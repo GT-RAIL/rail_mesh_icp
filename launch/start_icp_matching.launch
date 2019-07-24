@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="num_iterations" default="1000000"/>
+    <arg name="max_dist" default="0.5"/>
+    <arg name="translation_epsilon" default="0.0000000000001"/>
+    <arg name="model_fit_epsilon" default="0.0000000000001"/>
+
+    <!-- launch icp_matcher -->
+    <node pkg="fetchit_icp" type="icp_matcher_node" name="icp_matcher_node" output="screen">
+        <param name="iterations" value="$(arg num_iterations)"/>
+        <param name="max_distance" value="$(arg max_dist)"/>
+        <param name="trans_epsilon" value="$(arg translation_epsilon)"/>
+        <param name="fit_epsilon" value="$(arg model_fit_epsilon)"/>
+    </node>
+
+</launch>

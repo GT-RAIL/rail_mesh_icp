@@ -1,0 +1,5 @@
+geometry_msgs/Transform initial_estimate
+sensor_msgs/PointCloud2 target_cloud
+---
+geometry_msgs/TransformStamped template_pose
+float64 match_error

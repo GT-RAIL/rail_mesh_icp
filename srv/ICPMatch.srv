@@ -1,0 +1,6 @@
+sensor_msgs/PointCloud2 template_cloud
+sensor_msgs/PointCloud2 target_cloud
+---
+sensor_msgs/PointCloud2 matched_template_cloud
+geometry_msgs/Transform match_tf
+float64 match_error

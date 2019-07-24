@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Setup simulation time to use for rosbag -->
+    <param name="use_sim_time" value="true"/>
+
+    <!-- Load the robot description file onto rosparam -->
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find fetch_gazebo)/robots/fetch.gazebo.xacro'" />
+
+    <!-- Start the robot state publisher -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+      <param name="publish_frequency" type="double" value="100.0" />
+    </node>
+
+    <!-- Pulled from iai_kinect2 kinect2_bridge -->
+    <arg name="queue_size"        default="5"/>
+    <arg name="machine"           default="localhost"/>
+    <arg name="nodelet_manager"   default="head_camera_manager"/>
+    <arg name="start_manager"     default="true"/>
+    <arg name="use_machine"       default="true"/>
+    <arg name="respawn"           default="true"/>
+
+    <!-- Start nodelet manager -->
+    <machine name="localhost" address="localhost" if="$(arg use_machine)"/>
+    <node pkg="nodelet" type="nodelet" name="$(arg nodelet_manager)" args="manager"
+       if="$(arg start_manager)" machine="$(arg machine)" output="screen"/>
+
+    <!-- Generate qhd point cloud (960 x 540) -->
+    <node pkg="nodelet" type="nodelet" name="head_camera_points_xyzrgb_qhd" machine="$(arg machine)"
+       args="load depth_image_proc/point_cloud_xyzrgb $(arg nodelet_manager)" respawn="$(arg respawn)">
+      <remap from="rgb/camera_info"             to="/head_camera/rgb/camera_info"/>
+      <remap from="rgb/image_rect_color"        to="/head_camera/rgb/image_rect_color"/>
+      <remap from="depth_registered/image_rect" to="/head_camera/depth_registered/image_raw"/>
+      <remap from="depth_registered/points"     to="/head_camera/depth_registered/points"/>
+      <param name="queue_size" type="int" value="$(arg queue_size)"/>
+    </node>
+</launch>
