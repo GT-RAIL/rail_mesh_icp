@@ -40,7 +40,7 @@ follow tutorials found [here](http://docs.fetchrobotics.com/gazebo.html) to inst
 2. AFTER launching navigation, teleop the Fetch to face the front corver of the large recangular machine using keyboard
 teleop via `rosrun teleop_twist_keyboard teleop_twist_keyboard.py` making sure the Fetch's published point cloud under 
 topic `/head_camera/depth_registered/points` clearly captures the corner of the machine as shown below:
-<img src="./img/schunk.png" alt="Simulated Chuck Pose Coordinate frame." width="300">
+<img src="./img/align.png" alt="Simulated Chuck Pose Coordinate frame." width="300">
 
 2. Start the template matching and icp nodes using the demo launch file via 
 `roslaunch rail_mesh_icp template_match_demo.launch`. This should launch a version of the generic template matching 
@@ -54,7 +54,7 @@ estimate is too far, adjust it in the launch file (i.e. adjust variable `initial
 5. A service call to detect the corner via `rosservice call /template_matcher_demo_node/match_template` will start the 
 template matching. Once matched, an estimated frame named `template_pose` should appear in tf with the x-axis aligned 
 to the center of the cylindrical part of the machine as shown below: 
-<img src="./img/schunk.png" alt="Simulated Chuck Pose Coordinate frame." width="300">
+<img src="./img/match.png" alt="Simulated Chuck Pose Coordinate frame." width="300">
 
 This `template pose` can be changed arbitrarily with respect to the 
 matched template using the `template_offset` launch argument.
