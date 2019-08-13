@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/ros_workspaces/new_fetchit/active/src/derail-fetchit/fetchit_icp/.idea/fetchit_icp.iml" filepath="$USER_HOME$/ros_workspaces/new_fetchit/active/src/derail-fetchit/fetchit_icp/.idea/fetchit_icp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/rail_mesh_icp.iml" filepath="$PROJECT_DIR$/.idea/rail_mesh_icp.iml" />
+    </modules>
+  </component>
+</project>
