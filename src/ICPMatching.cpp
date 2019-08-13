@@ -1,4 +1,4 @@
-#include "fetchit_icp/ICPMatching.h"
+#include "rail_mesh_icp/ICPMatching.h"
 
 ICPMatcher::ICPMatcher(ros::NodeHandle& nh, int iters, float dist, float trans, float fit) {
     matcher_nh_ = nh;
@@ -9,7 +9,7 @@ ICPMatcher::ICPMatcher(ros::NodeHandle& nh, int iters, float dist, float trans, 
     pose_srv_ = matcher_nh_.advertiseService("icp_match_clouds", &ICPMatcher::handle_match_clouds_service, this);
 }
 
-bool ICPMatcher::handle_match_clouds_service(fetchit_icp::ICPMatch::Request& req, fetchit_icp::ICPMatch::Response& res) {
+bool ICPMatcher::handle_match_clouds_service(rail_mesh_icp::ICPMatch::Request& req, rail_mesh_icp::ICPMatch::Response& res) {
     // prepare datastructures
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr template_cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr target_cloud(new pcl::PointCloud<pcl::PointXYZRGB>);

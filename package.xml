@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <package format="2">
 
-  <name>fetchit_icp</name>
+  <name>rail_mesh_icp</name>
   <version>0.0.0</version>
-  <description>The icp matching pipeline for fetchit challenge</description>
+  <description>Enables matching a mesh model file (e.g. STL) to a point cloud using ROS.</description>
 
   <maintainer email="adaruna3@gatech.edu">Angel Daruna</maintainer>
 
-  <license>TODO</license>
+  <license>BSD 2-Clause License</license>
 
   <buildtool_depend>catkin</buildtool_depend>
 

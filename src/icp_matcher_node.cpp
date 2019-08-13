@@ -1,5 +1,5 @@
 #include <ros/ros.h>
-#include "fetchit_icp/ICPMatching.h"
+#include "rail_mesh_icp/ICPMatching.h"
 
 int main(int argc, char** argv){
     ros::init(argc, argv, "icp_matcher_node");

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(fetchit_icp)
+project(rail_mesh_icp)
 
 set(PACKAGE_DEPENDENCIES
   roscpp

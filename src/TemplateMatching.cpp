@@ -1,4 +1,4 @@
-#include "fetchit_icp/TemplateMatching.h"
+#include "rail_mesh_icp/TemplateMatching.h"
 
 TemplateMatcher::TemplateMatcher(ros::NodeHandle& nh, std::string& matching_frame, std::string& pcl_topic,
                                  std::string& template_file, tf::Transform& initial_estimate,
@@ -17,7 +17,7 @@ TemplateMatcher::TemplateMatcher(ros::NodeHandle& nh, std::string& matching_fram
     ros::NodeHandle pnh("~");
 
     // gets template pcd file
-    std::string templates_path = ros::package::getPath("fetchit_icp")+"/cad_models/";
+    std::string templates_path = ros::package::getPath("rail_mesh_icp")+"/cad_models/";
     std::string template_filepath = templates_path+template_file;
 
     // loads template cloud
@@ -28,7 +28,7 @@ TemplateMatcher::TemplateMatcher(ros::NodeHandle& nh, std::string& matching_fram
     }
 
     // creates service client to request ICP matches
-    icp_client_ = matcher_nh_.serviceClient<fetchit_icp::ICPMatch>("/icp_match_clouds");
+    icp_client_ = matcher_nh_.serviceClient<rail_mesh_icp::ICPMatch>("/icp_match_clouds");
 
     // visualization publishers
     pub_temp_ = pnh.advertise<sensor_msgs::PointCloud2>("template_points",0);
@@ -39,7 +39,7 @@ TemplateMatcher::TemplateMatcher(ros::NodeHandle& nh, std::string& matching_fram
     pose_srv_ = pnh.advertiseService("match_template", &TemplateMatcher::handle_match_template, this);
 }
 
-bool TemplateMatcher::handle_match_template(fetchit_icp::TemplateMatch::Request& req, fetchit_icp::TemplateMatch::Response& res) {
+bool TemplateMatcher::handle_match_template(rail_mesh_icp::TemplateMatch::Request& req, rail_mesh_icp::TemplateMatch::Response& res) {
     // declare data structures
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr target_cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr matched_template_cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
@@ -100,7 +100,7 @@ bool TemplateMatcher::handle_match_template(fetchit_icp::TemplateMatch::Request&
     }
 
     // makes ICP request
-    fetchit_icp::ICPMatch icp_srv;
+    rail_mesh_icp::ICPMatch icp_srv;
     icp_srv.request.template_cloud = template_msg;
     icp_srv.request.target_cloud = target_msg;
     if (!icp_client_.call(icp_srv)) {

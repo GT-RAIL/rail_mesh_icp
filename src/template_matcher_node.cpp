@@ -1,6 +1,6 @@
 #include <ros/ros.h>
 
-#include "fetchit_icp/TemplateMatching.h"
+#include "rail_mesh_icp/TemplateMatching.h"
 
 int main(int argc, char** argv){
     ros::init(argc, argv, "template_matcher_node");

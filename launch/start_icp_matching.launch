@@ -6,7 +6,7 @@
     <arg name="model_fit_epsilon" default="0.0000000000001"/>
 
     <!-- launch icp_matcher -->
-    <node pkg="fetchit_icp" type="icp_matcher_node" name="icp_matcher_node" output="screen">
+    <node pkg="rail_mesh_icp" type="icp_matcher_node" name="icp_matcher_node" output="screen">
         <param name="iterations" value="$(arg num_iterations)"/>
         <param name="max_distance" value="$(arg max_dist)"/>
         <param name="trans_epsilon" value="$(arg translation_epsilon)"/>
