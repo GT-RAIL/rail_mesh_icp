@@ -4,6 +4,7 @@
 #include <pcl/registration/icp.h>
 #include <pcl_ros/transforms.h>
 
+#include "rail_mesh_icp/ICPMatch.h"
 
 class ICPMatcher {
     public:

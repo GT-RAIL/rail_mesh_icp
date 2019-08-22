@@ -8,6 +8,7 @@
 #include <tf2_ros/static_transform_broadcaster.h>
 
 #include "rail_mesh_icp/ICPMatching.h"
+#include "rail_mesh_icp/TemplateMatch.h"
 
 class TemplateMatcher {
     public:

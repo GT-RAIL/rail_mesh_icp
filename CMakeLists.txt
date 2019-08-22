@@ -1,21 +1,17 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(rail_mesh_icp)
 
-set(PACKAGE_DEPENDENCIES
+find_package(Boost REQUIRED)
+find_package(PCL REQUIRED 1.8 REQUIRED COMPONENTS common io)
+find_package(catkin REQUIRED COMPONENTS
   roscpp
   pcl_ros
   pcl_conversions
   tf2_ros
   geometry_msgs
   sensor_msgs
-  message_generation
   std_msgs
-)
-
-find_package(Boost REQUIRED)
-find_package(PCL REQUIRED 1.8 REQUIRED COMPONENTS common io)
-find_package(catkin REQUIRED COMPONENTS
-  ${PACKAGE_DEPENDENCIES}
+  message_generation
 )
 
 add_service_files(
@@ -34,8 +30,6 @@ generate_messages(
 
 catkin_package(
     INCLUDE_DIRS include
-    #LIBRARIES ${PROJECT_NAME}
-    CATKIN_DEPENDS ${PACKAGE_DEPENDENCIES} message_runtime
 )
 
 include_directories(
@@ -56,7 +50,7 @@ set(LINK_LIBS
 
 # compiles cpp nodes
 add_executable(icp_matcher_node src/icp_matcher_node.cpp src/ICPMatching.cpp)
-add_dependencies(icp_matcher_node ${catkin_EXPORTED_TARGETS} ${PCL_EXPORTED_TARGETS})
+add_dependencies(icp_matcher_node ${catkin_EXPORTED_TARGETS} ${PCL_EXPORTED_TARGETS} ${PROJECT_NAME}_generate_messages_cpp)
 target_link_libraries(icp_matcher_node ${LINK_LIBS})
 
 add_executable(template_matcher_node src/template_matcher_node.cpp src/TemplateMatching.cpp)
@@ -64,7 +58,7 @@ add_dependencies(template_matcher_node ${catkin_EXPORTED_TARGETS} ${PCL_EXPORTED
 target_link_libraries(template_matcher_node ${LINK_LIBS})
 
 add_executable(mesh_sampler_node tools/mesh_sampler_node.cpp)
-add_dependencies(mesh_sampler_node ${catkin_EXPORTED_TARGETS} ${PCL_EXPORTED_TARGETS})
+add_dependencies(mesh_sampler_node ${catkin_EXPORTED_TARGETS} ${PCL_EXPORTED_TARGETS} ${PROJECT_NAME}_generate_messages_cpp)
 target_link_libraries(mesh_sampler_node ${LINK_LIBS})
 
 install(DIRECTORY include/${PROJECT_NAME}/
