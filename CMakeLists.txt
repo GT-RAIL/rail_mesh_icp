@@ -4,6 +4,7 @@ project(rail_mesh_icp)
 find_package(Boost REQUIRED)
 find_package(PCL REQUIRED 1.8 REQUIRED COMPONENTS common io)
 find_package(catkin REQUIRED COMPONENTS
+  message_generation
   roscpp
   pcl_ros
   pcl_conversions
@@ -11,7 +12,6 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   sensor_msgs
   std_msgs
-  message_generation
 )
 
 add_service_files(
