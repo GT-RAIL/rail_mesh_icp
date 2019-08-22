@@ -1,4 +1,4 @@
-rail_mesh_icp [![Build Status](https://api.travis-ci.org/GT-RAIL/rail_mesh_icp.png)](https://travis-ci.org/GT-RAIL/rail_mesh_icp)
+rail_mesh_icp [![Build Status](https://travis-ci.org/GT-RAIL/rail_mesh_icp.svg?branch=melodic-devel)](https://travis-ci.org/GT-RAIL/rail_mesh_icp)
 =================
 
 #### Mesh matching pipeline from the RAIL Lab
