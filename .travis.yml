@@ -1,14 +1,16 @@
-sudo: required
-dist: melodic
-language: generic
+language:
+  - cpp
+  - python
+python:
+  - "2.7"
 compiler:
   - gcc
+dist: melodic
+
 env:
   global:
     - CATKIN_WS=~/catkin_ws
     - CATKIN_WS_SRC=${CATKIN_WS}/src
-  matrix:
-    - CI_ROS_DISTRO="melodic"
 
 branches:
   only:
@@ -25,7 +27,7 @@ install:
   - ln -s $TRAVIS_BUILD_DIR $CATKIN_WS_SRC
   - cd $CATKIN_WS_SRC
   - cd ..
-  - rosdep install --from-paths ./ -i -y --rosdistro $CI_ROS_DISTRO
+  - rosdep install --from-paths ./ -i -y --rosdistro melodic -y
 
 script:
   - source /opt/ros/$CI_ROS_DISTRO/setup.bash
