@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$USER_HOME$/ros_workspaces/new_fetchit/active/src/derail-fetchit/fetchit_icp/.idea/fetchit_icp.iml" filepath="$USER_HOME$/ros_workspaces/new_fetchit/active/src/derail-fetchit/fetchit_icp/.idea/fetchit_icp.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/rail_mesh_icp.iml" filepath="$PROJECT_DIR$/.idea/rail_mesh_icp.iml" />
+      <module fileurl="file://$USER_HOME$/ros_workspaces/new_fetchit/active/src/rail_segmentation/.idea/rail_segmentation.iml" filepath="$USER_HOME$/ros_workspaces/new_fetchit/active/src/rail_segmentation/.idea/rail_segmentation.iml" />
     </modules>
   </component>
 </project>
