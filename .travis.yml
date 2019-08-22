@@ -1,0 +1,35 @@
+sudo: required
+dist: melodic
+language: generic
+compiler:
+  - gcc
+env:
+  global:
+    - CATKIN_WS=~/catkin_ws
+    - CATKIN_WS_SRC=${CATKIN_WS}/src
+  matrix:
+    - CI_ROS_DISTRO="melodic"
+
+branches:
+  only:
+    - melodic-devel
+
+install:
+  - sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+  - sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq -y python-rosdep python-catkin-tools
+  - sudo rosdep init
+  - rosdep update
+  - mkdir -p $CATKIN_WS_SRC
+  - ln -s $TRAVIS_BUILD_DIR $CATKIN_WS_SRC
+  - cd $CATKIN_WS_SRC
+  - cd ..
+  - rosdep install --from-paths ./ -i -y --rosdistro $CI_ROS_DISTRO
+
+script:
+  - source /opt/ros/$CI_ROS_DISTRO/setup.bash
+  - cd $CATKIN_WS
+  - catkin init
+  - catkin config --install
+  - catkin build --limit-status-rate 0.1 --no-notify -DCMAKE_BUILD_TYPE=Release
