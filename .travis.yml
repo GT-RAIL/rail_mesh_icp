@@ -30,7 +30,7 @@ install:
   - rosdep install --from-paths src --ignore-src --rosdistro melodic -y
 
 script:
-  - source /opt/ros/$CI_ROS_DISTRO/setup.bash
+  - source /opt/ros/melodic/setup.bash
   - cd $CATKIN_WS
   - catkin init
   - catkin config --install
