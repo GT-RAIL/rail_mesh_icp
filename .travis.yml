@@ -27,7 +27,7 @@ install:
   - ln -s $TRAVIS_BUILD_DIR $CATKIN_WS_SRC
   - cd $CATKIN_WS_SRC
   - cd ..
-  - rosdep install --from-paths ./ -i -y --rosdistro melodic -y
+  - rosdep install --from-paths src --ignore-src --rosdistro indigo -y
 
 script:
   - source /opt/ros/$CI_ROS_DISTRO/setup.bash
