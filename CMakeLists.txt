@@ -55,17 +55,13 @@ set(LINK_LIBS
 )
 
 # compiles cpp nodes
-add_library(${PROJECT_NAME} src/ICPMatching.cpp src/TemplateMatching.cpp)
-add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PCL_EXPORTED_TARGETS} ${PROJECT_NAME}_generate_messages_cpp)
-target_link_libraries(${PROJECT_NAME} ${LINK_LIBS})
+add_executable(icp_matcher_node src/icp_matcher_node.cpp src/ICPMatching.cpp)
+add_dependencies(icp_matcher_node ${catkin_EXPORTED_TARGETS} ${PCL_EXPORTED_TARGETS})
+target_link_libraries(icp_matcher_node ${LINK_LIBS})
 
-add_executable(icp_matcher_node src/icp_matcher_node.cpp)
-add_dependencies(icp_matcher_node ${catkin_EXPORTED_TARGETS} ${PCL_EXPORTED_TARGETS} ${${PROJECT_NAME}_EXPORTED_TARGETS})
-target_link_libraries(icp_matcher_node ${LINK_LIBS} ${PROJECT_NAME})
-
-add_executable(template_matcher_node src/template_matcher_node.cpp)
-add_dependencies(template_matcher_node ${catkin_EXPORTED_TARGETS} ${PCL_EXPORTED_TARGETS} ${${PROJECT_NAME}_EXPORTED_TARGETS})
-target_link_libraries(template_matcher_node ${LINK_LIBS} ${PROJECT_NAME})
+add_executable(template_matcher_node src/template_matcher_node.cpp src/TemplateMatching.cpp)
+add_dependencies(template_matcher_node ${catkin_EXPORTED_TARGETS} ${PCL_EXPORTED_TARGETS})
+target_link_libraries(template_matcher_node ${LINK_LIBS})
 
 add_executable(mesh_sampler_node tools/mesh_sampler_node.cpp)
 add_dependencies(mesh_sampler_node ${catkin_EXPORTED_TARGETS} ${PCL_EXPORTED_TARGETS})

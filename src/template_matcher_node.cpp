@@ -11,7 +11,7 @@ int main(int argc, char** argv){
     std::string pcl_topic = "/head_camera/depth_registered/points";
     std::string template_file = "corner.pcd";
     std::string initial_estimate_string = "1.9 -0.1 0.83 1.57 0 0";
-    std::string template_offset_string = "0.144 0.118 0.148 0 0 -0.785";
+    std::string template_offset_string = "0 0 0 0 0 0";
     std::string template_frame = "template_pose";
     bool visualize = true;
     bool debug = true;

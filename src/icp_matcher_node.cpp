@@ -9,7 +9,7 @@ int main(int argc, char** argv){
     int iters = 50;
     float dist = 1.0;
     float trans = 1e-8;
-    float fit = 1;
+    float fit = 1e-8;
     nh.getParam("/icp_matcher_node/iterations",iters);
     nh.getParam("/icp_matcher_node/max_distance",dist);
     nh.getParam("/icp_matcher_node/trans_epsilon",trans);

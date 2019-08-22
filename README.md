@@ -8,13 +8,13 @@ This repository contains the pipeline to perform model matching via ICP.
 2. Source your `devel/setup.bash` file in the workspace.
 
 ## Background
-The intended use for this package is to allow RGBD sensing platforms using ROS to match a mesh model (e.g. an STL file)
-to point clouds. This is useful in cases where an accurate estimate of the model's 6-DoF pose in the point cloud is needed 
-(e.g. grasping/manipulation). The mesh models are first converted to point clouds using a mesh sampling tool, then the
+ The mesh models are first converted to point clouds using a mesh sampling tool, then the
 model (source) point cloud is matched to a target point cloud using PCL's Iterative Closest Point (ICP) class template 
 [pcl::IterativeClosestPoint](http://docs.pointclouds.org/trunk/classpcl_1_1_iterative_closest_point.html) and an estimate
-of the objects 6-DoF pose. This 6-DoF pose estimate can come from an external detector via service calls or predefined 
-in the launch file for static objects.
+of the objects 6-DoF pose. This 6-DoF pose estimate can come from an external detector via service calls for dynamic 
+objects or predefined in a launch file for static objects. The target point clouds can either be raw point cloud from a 
+[sensor_msgs/PointCloud2](http://docs.ros.org/melodic/api/sensor_msgs/html/msg/PointCloud2.html) topic or preprocessed 
+point clouds included in the service calls. Parameters  
 
 ## Make the Mesh (Source) Cloud
 0. After you have mesh model for your object, convert it to a PLY (i.e. `.ply`) file format so the mesh sampling tool 
