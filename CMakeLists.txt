@@ -54,7 +54,7 @@ add_dependencies(icp_matcher_node ${catkin_EXPORTED_TARGETS} ${PCL_EXPORTED_TARG
 target_link_libraries(icp_matcher_node ${LINK_LIBS})
 
 add_executable(template_matcher_node src/template_matcher_node.cpp src/TemplateMatching.cpp)
-add_dependencies(template_matcher_node ${catkin_EXPORTED_TARGETS} ${PCL_EXPORTED_TARGETS})
+add_dependencies(template_matcher_node ${catkin_EXPORTED_TARGETS} ${PCL_EXPORTED_TARGETS} ${PROJECT_NAME}_generate_messages_cpp)
 target_link_libraries(template_matcher_node ${LINK_LIBS})
 
 add_executable(mesh_sampler_node tools/mesh_sampler_node.cpp)
