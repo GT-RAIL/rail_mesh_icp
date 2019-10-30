@@ -2,7 +2,7 @@
 <package>
 
   <name>rail_mesh_icp</name>
-  <version>0.0.3</version>
+  <version>0.0.4</version>
   <description>Enables matching a mesh model file (e.g. STL) to a point cloud using ROS.</description>
 
   <maintainer email="adaruna3@gatech.edu">Angel Daruna</maintainer>
