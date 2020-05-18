@@ -1,4 +1,5 @@
 #include <ros/ros.h>
+#include <ros/package.h>
 
 #include "rail_mesh_icp/TemplateMatching.h"
 
@@ -9,7 +10,6 @@ int main(int argc, char** argv){
     // sets the default params
     std::string matching_frame = "map";
     std::string pcl_topic = "/head_camera/depth_registered/points";
-    std::string template_file = "corner.pcd";
     std::string initial_estimate_string = "0 0 0 0 0 0";
     std::string template_offset_string = "0 0 0 0 0 0";
     std::string template_frame = "template_pose";
@@ -18,10 +18,12 @@ int main(int argc, char** argv){
     bool latched = true;
     bool pre_processed_cloud = false;
 
+    std::string template_file_path = ros::package::getPath("rail_mesh_icp") + "/cad_models/" + "corner.pcd";
+
     // gets roslaunch params
     pnh.getParam("matching_frame", matching_frame);
     pnh.getParam("pcl_topic", pcl_topic);
-    pnh.getParam("template_file", template_file);
+    pnh.getParam("template_file_path", template_file_path);
     pnh.getParam("initial_estimate_string", initial_estimate_string);
     pnh.getParam("template_offset_string", template_offset_string);
     pnh.getParam("template_frame", template_frame);
@@ -51,7 +53,7 @@ int main(int argc, char** argv){
     template_offset.setRotation(tf::Quaternion(offset[4],offset[5],offset[3]));
 
     // starts a template matcher
-    TemplateMatcher matcher(nh,matching_frame,pcl_topic,template_file,initial_estimate,template_offset,template_frame,
+    TemplateMatcher matcher(nh,matching_frame,pcl_topic,template_file_path,initial_estimate,template_offset,template_frame,
                             visualize,debug,latched,pre_processed_cloud);
 
     try{
