@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <arg name="file_in" default="$(find rail_mesh_icp)/cad_models/corner.ply" />
+  <arg name="file_out" default="$(find rail_mesh_icp)/cad_models/corner.pcd" />
+  <arg name="n_samples" default="100000" />
+  <arg name="leaf_size" default="0.010000" />
+
+  <node pkg="rail_mesh_icp" type="mesh_sampler_node" name="mesh_sampler_demo" output="screen"
+        args="$(arg file_in) $(arg file_out) -n_samples $(arg n_samples) -leaf_size $(arg leaf_size) " />
+
+</launch>
