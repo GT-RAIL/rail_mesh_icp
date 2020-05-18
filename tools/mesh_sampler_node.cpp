@@ -13,8 +13,6 @@
 #include <pcl/console/print.h>
 #include <pcl/console/parse.h>
 
-#include <ros/package.h>
-
 inline double
 uniform_deviate (int seed)
 {
@@ -130,8 +128,6 @@ main (int argc, char **argv)
   ros::NodeHandle matcher_nh;
   print_info ("Convert a CAD model to a point cloud using uniform sampling.\n");
 
-  std::string package_path = ros::package::getPath("rail_mesh_icp");
-
   if (argc < 3) {
     printHelp (argc, argv);
     return (-1);
@@ -160,7 +156,7 @@ main (int argc, char **argv)
   // reads the PLY file
   vtkSmartPointer<vtkPolyData> polydata1 = vtkSmartPointer<vtkPolyData>::New ();
   pcl::PolygonMesh mesh;
-  pcl::io::loadPolygonFilePLY (package_path+"/cad_models/"+argv[ply_file_indices[0]], mesh);
+  pcl::io::loadPolygonFilePLY (argv[ply_file_indices[0]], mesh);
   pcl::io::mesh2vtk (mesh, polydata1);
 
   //make sure that the polygons are triangles!
@@ -187,5 +183,5 @@ main (int argc, char **argv)
   pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_xyz (new pcl::PointCloud<pcl::PointXYZ>);
   // Strip uninitialized normals and colors from cloud:
   pcl::copyPointCloud (*voxel_cloud, *cloud_xyz);
-  savePCDFileASCII (package_path+"/cad_models/"+argv[pcd_file_indices[0]], *cloud_xyz);
+  savePCDFileASCII (argv[pcd_file_indices[0]], *cloud_xyz);
 }
