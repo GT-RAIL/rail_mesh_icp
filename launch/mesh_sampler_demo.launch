@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
 
-  <arg name="file_in" default="$(find rail_mesh_icp)/cad_models/corner.ply" />
-  <arg name="file_out" default="$(find rail_mesh_icp)/cad_models/corner.pcd" />
+  <arg name="mesh_file_path" default="$(find rail_mesh_icp)/cad_models" />
+  <arg name="file_in" default="$(arg mesh_file_path)/corner.ply" />
+  <arg name="file_out" default="$(arg mesh_file_path)/corner.pcd" />
   <arg name="n_samples" default="100000" />
   <arg name="leaf_size" default="0.010000" />
 
