@@ -6,3 +6,4 @@ Original Authors
 Contributors
 ------------
  
+ [Yoshimaru Tanaka](https://github.com/robograffitti)
