@@ -1,7 +1,7 @@
 #include "rail_mesh_icp/TemplateMatching.h"
 
 TemplateMatcher::TemplateMatcher(ros::NodeHandle& nh, std::string& matching_frame, std::string& pcl_topic,
-                                 std::string& template_file, tf::Transform& initial_estimate,
+                                 std::string& template_file_path, tf::Transform& initial_estimate,
                                  tf::Transform& template_offset, std::string& template_frame, bool visualize,
                                  bool debug, bool latch, bool pre_processed_cloud) {
     matcher_nh_ = nh;
@@ -16,13 +16,9 @@ TemplateMatcher::TemplateMatcher(ros::NodeHandle& nh, std::string& matching_fram
     viz_ = visualize;
     ros::NodeHandle pnh("~");
 
-    // gets template pcd file
-    std::string templates_path = ros::package::getPath("rail_mesh_icp")+"/cad_models/";
-    std::string template_filepath = templates_path+template_file;
-
     // loads template cloud
     template_cloud_ = boost::make_shared<pcl::PointCloud<pcl::PointXYZRGB>>();
-    if (pcl::io::loadPCDFile<pcl::PointXYZRGB>(template_filepath,*template_cloud_) < 0) {
+    if (pcl::io::loadPCDFile<pcl::PointXYZRGB>(template_file_path, *template_cloud_) < 0) {
         ROS_ERROR("Could not load template PCD.");
         exit(-1);
     }
